@@ -16,21 +16,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from gestion_tareas import views
+from gestion_tareas.views import signup_view, task_view, home_view, signout_view, signin_view, board_view
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('api/', include('gestion_tareas.urls'), name='api'),
-    path('', views.home, name='home'),
+    path('', home_view.home, name='home'),
     path('admin/', admin.site.urls),
-    path('signup/', views.signup, name='signup'),
-    path('tasks/', views.tasks, name='tasks'),
-    path('tasks_completed/', views.tasks_completed, name='tasks_completed'),
-    path('logout/', views.signout, name='logout'),
-    path('signin/', views.signin, name='signin'),
-    path('create_task/', views.create_task, name='create_task'),
-    path('tasks/<int:task_id>', views.task_detail, name='task_detail'),
-    path('taks/<int:task_id>/complete', views.complete_task, name='complete_task'),
-    path('tasks/<int:task_id>/delete', views.delete_task, name='delete_task'),
+
+    path('signup/', signup_view.signup, name='signup'),
+    path('signin/', signin_view.signin, name='signin'),
+    path('logout/', signout_view.signout, name='logout'),
+
+    path('tasks_completed/', task_view.tasks_completed, name='tasks_completed'),
+    path('create_task/', task_view.create_task, name='create_task'),
+    path('tasks/', task_view.tasks, name='tasks'),
+    path('tasks/<int:task_id>', task_view.task_detail, name='task_detail'),
+    path('tasks/<int:task_id>/complete', task_view.complete_task, name='complete_task'),
+    path('tasks/<int:task_id>/delete', task_view.delete_task, name='delete_task'),
+
+    path('boards/',board_view.BoardsView.as_view(), name='board'),
+    path('boards/<int:pk>/',board_view.BoardsView.as_view(), name='board_detail'),
 
 ]
