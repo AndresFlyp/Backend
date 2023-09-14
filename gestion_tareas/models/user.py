@@ -7,3 +7,4 @@ class User(models.Model):
     password = models.CharField(max_length=130)
     created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
+    password = models.CharField(max_length=50)
