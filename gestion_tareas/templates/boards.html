@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Boards</h1>
+
+<ul>
+    {% for board in boards %}
+    <li>
+      <a href="{% url 'board_detail' board.id %}">
+        {% if board.important %}
+        <strong>{{board.title}}</strong>
+        {% else %} {{board.id}} {{board.title}} {% endif %}
+  
+        {{board.datecompleted|date:'M j Y:i'}}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  
+  {% endblock %}
+  

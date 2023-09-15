@@ -16,13 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from gestion_tareas.views import signup_view, task_view, home_view, signout_view, signin_view, board_view
+from gestion_tareas.views import signup_view
+from gestion_tareas.views import task_view
+from gestion_tareas.views import home_view
+from gestion_tareas.views import signout_view 
+from gestion_tareas.views import signin_view
+from gestion_tareas.views import board_view
+
 
 urlpatterns = [
+    
+
     path('admin/', admin.site.urls, name='admin'),
     path('api/', include('gestion_tareas.urls'), name='api'),
     path('', home_view.home, name='home'),
-    path('admin/', admin.site.urls),
 
     path('signup/', signup_view.signup, name='signup'),
     path('signin/', signin_view.signin, name='signin'),
@@ -35,7 +42,7 @@ urlpatterns = [
     path('tasks/<int:task_id>/complete', task_view.complete_task, name='complete_task'),
     path('tasks/<int:task_id>/delete', task_view.delete_task, name='delete_task'),
 
-    path('boards/',board_view.BoardsView.as_view(), name='board'),
+    path('boards/',board_view.BoardsView.as_view(), name='boards'),
     path('boards/<int:pk>/',board_view.BoardsView.as_view(), name='board_detail'),
 
 ]
