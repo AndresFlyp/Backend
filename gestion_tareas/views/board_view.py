@@ -3,19 +3,14 @@ from rest_framework import status
 from rest_framework.decorators import APIView
 from rest_framework.response import Response
 
-
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
-
 from ..serializers.board_serializers import BoardSerializer
 from ..models.board import Board
 
-    # authentication_classes = [TokenAuthentication]
-    # permission_classes = [IsAuthenticated]
+
 
 
 class BoardsView(APIView):
-
+    
     def get(self, request, pk=None):
         try:
             if pk is not None:

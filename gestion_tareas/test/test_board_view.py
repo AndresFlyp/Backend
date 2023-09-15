@@ -8,7 +8,7 @@ class BoardsViewTestCase(APITestCase):
     
     def setUp(self):
         self.board = Board.objects.create(title="Test Board")
-        self.url = reverse('board') 
+        self.url = reverse('boards') 
         
     def test_get_single_board(self):
         response = self.client.get(reverse('board_detail', args=[self.board.pk]))
