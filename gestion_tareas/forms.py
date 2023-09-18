@@ -5,3 +5,8 @@ class TaskForm(ModelForm):
     class Meta:
         model = Task
         fields = ['title', 'description', 'important']
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']
