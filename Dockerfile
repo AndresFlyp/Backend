@@ -4,3 +4,5 @@ COPY requirements.txt /backend/requirements.txt
 RUN pip install -r requirements.txt
 COPY . /backend
 EXPOSE 8000
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1

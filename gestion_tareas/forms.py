@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm 
 from .models.task import Task
 
 class TaskForm(ModelForm):
@@ -6,7 +6,7 @@ class TaskForm(ModelForm):
         model = Task
         fields = ['title', 'description', 'important']
 
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['text']
+# class CommentForm(forms.ModelForm):
+#     class Meta:
+#         model = Comment
+#         fields = ['text']
