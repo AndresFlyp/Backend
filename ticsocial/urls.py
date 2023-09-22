@@ -22,6 +22,7 @@ from gestion_tareas.views import home_view
 from gestion_tareas.views import signout_view 
 from gestion_tareas.views import signin_view
 from gestion_tareas.views import board_view
+from gestion_tareas.views.api_task_view import TaskListCreateView, TaskDetailView
 
 
 urlpatterns = [
@@ -44,5 +45,8 @@ urlpatterns = [
 
     path('boards/',board_view.BoardsView.as_view(), name='boards'),
     path('boards/<int:pk>/',board_view.BoardsView.as_view(), name='board_detail'),
+
+    path('tasks_api/', TaskListCreateView.as_view(), name='task-list-create'),
+    path('tasks_api/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),
 
 ]
