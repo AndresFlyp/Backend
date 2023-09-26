@@ -43,8 +43,9 @@ urlpatterns = [
     path('tasks/<int:task_id>/complete', task_view.complete_task, name='complete_task'),
     path('tasks/<int:task_id>/delete', task_view.delete_task, name='delete_task'),
 
-    path('boards/',board_view.BoardsView.as_view(), name='boards'),
-    path('boards/<int:pk>/',board_view.BoardsView.as_view(), name='board_detail'),
+    path('boards/',board_view.BoardList.as_view(), name='boards_list'),
+    path('create-boards/',board_view.BoardCreate.as_view(), name='boards_create'),
+    path('boards/<int:pk>/',board_view.BoardRetrieveUpdateDelete.as_view(), name='board_detail'),
 
     path('tasks_api/', TaskListCreateView.as_view(), name='task-list-create'),
     path('tasks_api/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),

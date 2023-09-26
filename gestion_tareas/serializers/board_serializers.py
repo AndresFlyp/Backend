@@ -4,7 +4,7 @@ from ..models.board import Board
 class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
-        fields = ['id', 'title']
+        fields = ['id', 'title', 'month']
 
     def validate_title(self, value):
         

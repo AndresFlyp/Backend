@@ -8,20 +8,30 @@ class BoardsViewTestCase(APITestCase):
     
     def setUp(self):
         self.board = Board.objects.create(title="Test Board")
-        self.url = reverse('boards') 
-        
-    def test_get_single_board(self):
-        response = self.client.get(reverse('board_detail', args=[self.board.pk]))
+
+    def test_list_boards(self):
+        url = reverse("boards_list")
+        response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        serializer = BoardSerializer(self.board)
-        self.assertEqual(response.data, serializer.data)
-        
-    def test_get_all_boards(self):
-        response = self.client.get(self.url)
+
+    def test_create_board(self):
+        url = reverse("boards_create")
+        data = {"title": "New Board"}
+        response = self.client.post(url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_update_board(self):
+        url = reverse("board_detail", args=[self.board.pk])
+        data = {"title": "Updated Board"}
+        response = self.client.patch(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data['Boards']), 1)  
-        
-    def test_get_all_boards_empty(self):
-        Board.objects.all().delete() 
-        response = self.client.get(self.url)
+
+    def test_delete_board(self):
+        url = reverse("board_detail", args=[self.board.pk])
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_board_not_found(self):
+        url = reverse("board_detail", args=[1000]) 
+        response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
